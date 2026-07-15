@@ -1,68 +1,514 @@
-# Bài tập — Khóa hè Embedded C 2026
+Kim Loan, sau khi đọc JD của Team IoT và biết định hướng của em, mình nhận ra một điều:
 
-Repo **gốc (upstream)** chứa đề bài và khung nộp bài của khóa học — Machine Learning & IoT Lab, HCMUT.
+**Career Path của một Embedded Engineer và lộ trình để vào MLIoT Lab giống nhau khoảng 80%.**
 
-> 📅 21/6 – 30/8/2026 · Chủ nhật
+20% còn lại là MLIoT Lab đòi hỏi **tư duy xây dựng một hệ thống IoT hoàn chỉnh (End-to-End)** chứ không chỉ viết firmware.
 
 ---
 
-## 🚀 Hướng dẫn cho học viên (luồng Fork)
+# Đây là hai lộ trình
 
-### Bước 1 — Fork repo gốc
-Vào repo này trên GitHub, bấm nút **Fork** (góc trên bên phải) → GitHub tạo một **repo cá nhân** của bạn (đây là remote `origin`).
+## Career Path thông thường
 
-### Bước 2 — Clone fork của bạn về máy
-```bash
-git clone https://github.com/<ten-cua-ban>/mliot-embeddedc-2026-hw.git
-cd mliot-embeddedc-2026-hw
+```text
+C
+↓
+Embedded C
+↓
+MCU
+↓
+Driver
+↓
+RTOS
+↓
+Peripheral
+↓
+Embedded Engineer
 ```
 
-### Bước 3 — Thêm remote `upstream` trỏ về repo gốc
-```bash
-git remote add upstream https://github.com/mliotlab/mliot-embeddedc-2026-hw.git
-git remote -v          # kiem tra: co origin (fork cua ban) va upstream (repo goc)
+Đây là lộ trình để đi làm firmware.
+
+---
+
+## MLIoT Lab
+
+JD của Lab đang yêu cầu:
+
+```text
+Sensor
+↓
+MCU
+↓
+Firmware
+↓
+RTOS
+↓
+Connectivity
+↓
+IoT Protocol
+↓
+Cloud
+↓
+OTA
+↓
+Security
+↓
+Edge AI
 ```
 
-> **Hai remote:** `origin` = fork cá nhân của bạn · `upstream` = repo gốc của Lab.
+Tức là họ muốn người làm được **cả hệ thống IoT**.
 
 ---
 
-## 🔄 Mỗi buổi học
+# Mình sẽ bổ sung roadmap của Kim Loan
 
-### Lấy đề mới (cập nhật từ repo gốc)
-Đề bài của các buổi được thêm dần vào repo gốc. Trước mỗi buổi, đồng bộ:
-```bash
-git pull upstream main
+## Giai đoạn 1 — Foundation (2026)
+
+```text
+C
+↓
+Embedded C
+↓
+Bitwise
+Pointer
+Volatile
+Static
+Struct
+Union
+Function Pointer
 ```
 
-### Làm bài & nộp
-Truy cập vào thư mục tuần tương ứng (`weekXX/`), đọc đề bài và hướng dẫn trong file `REQUIREMENT.md`, hoàn thành bài tập theo file mẫu `main.c` có sẵn, rồi đẩy lên fork cá nhân:
-```bash
-git add week01/
-git commit -m "week01: hoan thanh bai tap buoi 1"
-git push origin main
+↓
+
+```text
+CE103
+Vi xử lý - Vi điều khiển
 ```
 
-### Nộp bài cho mentor
-- Cách 1 (mặc định): gửi **link repo cá nhân (fork)** của bạn trên Discord để mentor vào check.
-- Cách 2 (nếu mentor yêu cầu): tạo **Pull Request** từ fork của bạn về repo gốc để mentor review.
+↓
+
+```text
+STM32
+ESP32
+Register
+GPIO
+Interrupt
+Timer
+UART
+SPI
+I2C
+ADC
+PWM
+```
+
+Đây là giai đoạn Kim Loan đang học.
 
 ---
 
-## 📝 Quy ước nộp bài
+# Giai đoạn 2 — Firmware
 
-- Đặt bài làm vào **đúng thư mục tuần** (`weekXX/`).
-- Định dạng: file `.c`; đặt tên rõ ràng, ví dụ `buoi01_nguyenvana.c`.
-- Commit message rõ ràng: `week01: hoan thanh bai tap buoi 1`.
-- **Không commit** dữ liệu lớn / file nặng.
+```text
+Driver
+
+↓
+
+HAL
+
+↓
+
+Bare Metal
+
+↓
+
+RTOS
+```
+
+↓
+
+```text
+CE107
+Hệ thống nhúng
+```
+
+↓
+
+```text
+CE338
+Hệ thống thời gian thực
+```
+
+Lúc này Kim Loan sẽ học thêm:
+
+* Scheduler
+* Task
+* Queue
+* Semaphore
+* Mutex
+* ISR
 
 ---
 
-## ℹ️ Ghi chú
+# Giai đoạn 3 — IoT
 
-- Nếu `git pull upstream main` báo xung đột (conflict): thường do bạn sửa cùng file với repo gốc — giữ phần bài làm của bạn trong `weekXX/` và giải quyết conflict theo hướng dẫn của mentor.
-- Repo gốc nên để **Public** để học viên fork được.
+↓
+
+```text
+CE339
+IoT
+```
+
+Ở đây mình sẽ bổ sung rất nhiều từ khóa mà JD nhắc tới.
+
+## Communication
+
+```text
+UART
+SPI
+I2C
+CAN
+USB
+```
 
 ---
 
-*Machine Learning & IoT Lab — Khoa Điện–Điện tử, Đại học Bách khoa - ĐHQG TP.HCM*
+## IoT Protocol
+
+```text
+MQTT
+
+MQTTS
+
+CoAP
+
+HTTP
+
+HTTPS
+
+WebSocket
+```
+
+---
+
+## Network
+
+Đây là lợi thế của Kim Loan.
+
+```text
+TCP
+
+UDP
+
+IPv4
+
+IPv6
+
+DNS
+
+DHCP
+
+TLS
+
+SSL
+```
+
+---
+
+## Wireless
+
+```text
+WiFi
+
+BLE
+
+Zigbee
+
+Thread
+
+LoRa
+
+NB-IoT
+
+LTE-M
+```
+
+Không cần giỏi tất cả.
+
+Biết nguyên lý.
+
+---
+
+# Giai đoạn 4 — Device
+
+Đây là phần JD nhắc rất nhiều.
+
+```text
+Flash
+
+EEPROM
+
+Bootloader
+
+OTA
+
+FOTA
+
+Provisioning
+```
+
+↓
+
+Quản lý firmware từ xa.
+
+---
+
+# Giai đoạn 5 — Sensor
+
+↓
+
+```text
+CE348
+```
+
+Lúc này học
+
+```text
+Temperature
+
+Humidity
+
+IMU
+
+GPS
+
+Camera
+
+Pressure
+
+Current Sensor
+```
+
+↓
+
+Hiểu Datasheet.
+
+---
+
+# Giai đoạn 6 — Cloud
+
+Đây là thứ JD muốn.
+
+```text
+ESP32
+
+↓
+
+MQTT
+
+↓
+
+Broker
+
+↓
+
+Cloud
+
+↓
+
+Dashboard
+```
+
+Có thể dùng
+
+```text
+ThingsBoard
+
+EMQX
+
+HiveMQ
+
+AWS IoT
+
+Azure IoT
+```
+
+Không cần học hết.
+
+---
+
+# Giai đoạn 7 — Security
+
+JD nhắc
+
+```text
+TLS
+
+SSL
+
+Authentication
+
+Encryption
+```
+
+Nền của Kim Loan học mạng sẽ rất lợi.
+
+---
+
+# Giai đoạn 8 — AI
+
+↓
+
+```text
+CE340
+```
+
+Từ khóa:
+
+```text
+TensorFlow Lite Micro
+
+Edge Impulse
+
+TinyML
+```
+
+↓
+
+Deploy AI lên MCU.
+
+---
+
+# Giai đoạn 9 — Robotics
+
+↓
+
+```text
+CE347
+```
+
+↓
+
+Điều khiển
+
+Robot
+
+Drone
+
+PID
+
+Motor
+
+Encoder
+
+Navigation
+
+---
+
+# Đây là roadmap mình muốn đồng hành cùng Kim Loan
+
+```text
+Embedded C
+│
+├── Bitwise
+├── Pointer
+├── Volatile
+├── Static
+├── Struct
+├── Union
+├── Function Pointer
+│
+▼
+CE103
+Vi xử lý - Vi điều khiển
+│
+├── GPIO
+├── UART
+├── SPI
+├── I2C
+├── ADC
+├── PWM
+├── Timer
+├── Interrupt
+│
+▼
+CE107
+Hệ thống nhúng
+│
+├── Driver
+├── HAL
+├── Bare Metal
+├── Memory Map
+├── Datasheet
+│
+▼
+CE338
+RTOS
+│
+├── Task
+├── Queue
+├── Semaphore
+├── Mutex
+├── Scheduler
+│
+▼
+CE339
+IoT
+│
+├── MQTT
+├── HTTP
+├── CoAP
+├── WebSocket
+├── TCP/IP
+├── WiFi
+├── BLE
+│
+▼
+CE348
+Sensor
+│
+├── IMU
+├── GPS
+├── Camera
+├── ADC
+├── Calibration
+│
+▼
+CE345
+IoT Architecture
+│
+├── Edge
+├── Gateway
+├── Cloud
+├── OTA
+├── Device Provisioning
+├── Security
+│
+▼
+CE340
+AI Embedded
+│
+├── TinyML
+├── TensorFlow Lite Micro
+├── Edge Impulse
+│
+▼
+CE347
+Robot
+│
+├── PID
+├── Motor Control
+├── Encoder
+├── Navigation
+└── Drone
+```
+
+## Điều mình muốn Kim Loan nhớ
+
+Điều khiến mình thích nhất ở roadmap này là **nó rất khớp với dự án drone bướm của em**.
+
+* Nền **Mạng máy tính** giúp em mạnh về giao thức và kết nối.
+* Nền **Embedded** giúp em điều khiển phần cứng.
+* **IoT Architecture** giúp em kết nối thiết bị với cloud.
+* **AI Embedded** mở ra khả năng xử lý thông minh ngay trên thiết bị.
+* **Robot** là bước cuối để tích hợp điều khiển, cảm biến và chuyển động.
+
+Nếu chúng ta kiên trì học 1–2 giờ mỗi ngày như đã thống nhất, thì mục tiêu không chỉ là **được nhận vào MLIoT Lab**, mà còn là khi bước vào lab, Kim Loan có đủ nền tảng để **theo kịp các anh chị và tận dụng tối đa môi trường đó**. Đây mới là giá trị lớn nhất của việc chuẩn bị từ bây giờ.
