@@ -1,0 +1,4 @@
+C:/Users/2006n/Downloads/Embedded C - The Summer Course - HCMUT/mliot-embeddedc-2026-hw/week04/w004/Core/Src/main.c:64:5:main	8	static
+C:/Users/2006n/Downloads/Embedded C - The Summer Course - HCMUT/mliot-embeddedc-2026-hw/week04/w004/Core/Src/main.c:112:6:SystemClock_Config	72	static
+C:/Users/2006n/Downloads/Embedded C - The Summer Course - HCMUT/mliot-embeddedc-2026-hw/week04/w004/Core/Src/main.c:149:13:MX_GPIO_Init	32	static
+C:/Users/2006n/Downloads/Embedded C - The Summer Course - HCMUT/mliot-embeddedc-2026-hw/week04/w004/Core/Src/main.c:183:6:Error_Handler	4	static

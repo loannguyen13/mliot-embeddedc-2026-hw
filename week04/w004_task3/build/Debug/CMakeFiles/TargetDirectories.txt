@@ -1,0 +1,6 @@
+C:/Users/2006n/Downloads/Embedded C - The Summer Course - HCMUT/mliot-embeddedc-2026-hw/week04/w004/build/Debug/CMakeFiles/w004.dir
+C:/Users/2006n/Downloads/Embedded C - The Summer Course - HCMUT/mliot-embeddedc-2026-hw/week04/w004/build/Debug/CMakeFiles/edit_cache.dir
+C:/Users/2006n/Downloads/Embedded C - The Summer Course - HCMUT/mliot-embeddedc-2026-hw/week04/w004/build/Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/2006n/Downloads/Embedded C - The Summer Course - HCMUT/mliot-embeddedc-2026-hw/week04/w004/build/Debug/cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir
+C:/Users/2006n/Downloads/Embedded C - The Summer Course - HCMUT/mliot-embeddedc-2026-hw/week04/w004/build/Debug/cmake/stm32cubemx/CMakeFiles/edit_cache.dir
+C:/Users/2006n/Downloads/Embedded C - The Summer Course - HCMUT/mliot-embeddedc-2026-hw/week04/w004/build/Debug/cmake/stm32cubemx/CMakeFiles/rebuild_cache.dir

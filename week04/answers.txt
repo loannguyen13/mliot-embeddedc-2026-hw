@@ -1,0 +1,67 @@
+### PHẦN 1: CÂU HỎI TỰ LUẬN MỞ (Ghi câu trả lời vào file `answers.txt`)
+
+#### **Task 1 (Kiến trúc Phần cứng): Bản chất các chế độ GPIO**
+- **1.1**: Trong cấu trúc bên trong của một chân GPIO Output (Push-Pull), cặp Transistor PMOS và NMOS phối hợp đóng/ngắt như thế nào khi cấu hình chân ở mức logic `1` (3.3V) và mức logic `0` (0V)? 
+Trả lời:
+-Trong chế độ GPIO Output Push-Pull, mỗi chân GPIO được điều khiển bởi hai transistor MOSFET:
+
+PMOS nối chân GPIO với nguồn VDD (3.3V).
+NMOS nối chân GPIO với GND (0V).
+
+-Hai transistor này hoạt động bổ sung cho nhau và không bao giờ cùng bật đồng thời nhằm tránh hiện tượng ngắn mạch giữa VDD và GND.
+
+Khi xuất mức logic 1 (HIGH):
+PMOS đóng (ON).
+NMOS ngắt (OFF).
+Chân GPIO được nối với nguồn 3.3V nên điện áp tại chân là khoảng 3.3V.
+Khi xuất mức logic 0 (LOW):
+PMOS ngắt (OFF).
+NMOS đóng (ON).
+Chân GPIO được nối xuống GND nên điện áp tại chân là 0V.
+
+-Suy ra, nhờ cơ chế này, chân GPIO có thể chủ động cấp dòng hoặc kéo dòng, tạo ra mức điện áp ổn định và phù hợp để điều khiển LED, relay hoặc các thiết bị ngoại vi.
+
+- **1.2**: Khi nào ta cần cấu hình một chân GPIO ở chế độ **Input Pull-up**? Nếu một chân cấu hình là Input nhưng lại để ở trạng thái **Floating (No Pull-up/Pull-down)** và không kết nối vào đâu, hiện tượng gì sẽ xảy ra với giá trị đọc được của thanh ghi dữ liệu đầu vào?
+Trả lời: 
+
+Chế độ Input Pull-up được sử dụng khi chân GPIO làm ngõ vào và thiết bị bên ngoài (ví dụ nút nhấn, công tắc) chỉ nối chân GPIO xuống GND khi hoạt động.
+
+Khi cấu hình Input Pull-up, vi điều khiển sẽ kích hoạt một điện trở kéo lên bên trong chip, giúp chân GPIO mặc định ở mức logic HIGH khi chưa có tín hiệu.
+
+Ví dụ với nút nhấn:
+
+Chưa nhấn:
+Điện trở Pull-up kéo chân GPIO lên 3.3V.
+Vi điều khiển đọc được mức HIGH.
+Khi nhấn:
+Nút nhấn nối chân GPIO xuống GND.
+Điện áp tại chân trở thành LOW.
+Vi điều khiển đọc được mức LOW.
+
+Nếu chân GPIO được cấu hình là Input Floating (No Pull-up/Pull-down) và không nối với bất kỳ nguồn tín hiệu nào thì chân sẽ ở trạng thái Floating (trôi nổi). Khi đó điện áp tại chân không xác định và rất dễ bị ảnh hưởng bởi nhiễu điện từ từ môi trường.
+
+Do đó, khi đọc thanh ghi dữ liệu đầu vào (GPIOx_IDR), giá trị có thể thay đổi ngẫu nhiên giữa 0 và 1, gây đọc sai hoặc chương trình hoạt động không ổn định.
+
+-------------------------
+#### **Task 2 (Quy trình Cấu hình ngoại vi): Tầm quan trọng của Xung nhịp (Clock)**
+Theo quy trình 3 bước cấu hình ngoại vi nhúng, bước đầu tiên luôn luôn là **Cấp nguồn xung nhịp (Enable Peripheral Clock)** thông qua hệ thống bus (APB/AHB). Tại sao nhà sản xuất chip (ST) lại mặc định tắt toàn bộ Clock của ngoại vi khi vừa reset chip? Chuyện gì sẽ xảy ra nếu bạn cấu hình các thanh ghi chức năng của GPIO mà quên bật Clock cho Port đó?
+
+Trả lời:
+-Sau khi vi điều khiển được Reset, nhà sản xuất mặc định tắt Clock của hầu hết các ngoại vi nhằm giảm công suất tiêu thụ và tiết kiệm năng lượng. Chỉ những khối thật sự cần thiết cho quá trình khởi động mới được cấp Clock.
+
+-Khi chương trình cần sử dụng một ngoại vi (GPIO, UART, SPI, I2C, ADC...), chương trình phải chủ động bật Clock cho ngoại vi đó thông qua thanh ghi RCC.
+
+-Việc chỉ cấp Clock cho các ngoại vi đang sử dụng mang lại các lợi ích:
+
+Giảm tiêu thụ điện năng.
+Giảm hoạt động không cần thiết của phần cứng.
+Tăng hiệu quả sử dụng tài nguyên của vi điều khiển.
+
+-Nếu lập trình viên quên Enable Clock cho một Port GPIO mà vẫn cấu hình các thanh ghi của Port đó thì các thanh ghi sẽ không hoạt động vì ngoại vi chưa được cấp xung nhịp.
+
+-Hậu quả là:
+
+Các lệnh ghi cấu hình GPIO không có hiệu lực.
+Chân GPIO không thể chuyển sang Input hoặc Output như mong muốn.
+Không thể đọc trạng thái Input hoặc điều khiển Output.
+Chương trình có thể vẫn chạy bình thường nhưng phần cứng không phản hồi, ví dụ LED không sáng hoặc nút nhấn không đọc được.
